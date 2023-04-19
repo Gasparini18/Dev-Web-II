@@ -21,6 +21,13 @@ app.get("/consulta", function(req,res){
         console.log("Erro ao carregar dados do banco: " + erro)
     })
 })
+app.get("/excluir/:id", function(req,res){
+    post.destroy({where: {"id": req.params.id}}).then(function(){
+        res.render("primeira_pagina")
+    }).catch(function(erro){
+        console.log("Erro ao excluir ou encontrar dados do banco: " + erro)
+    })
+})
 app.post("/cadastrar", function(req,res){
     post.create({
         nome: req.body.nome,
